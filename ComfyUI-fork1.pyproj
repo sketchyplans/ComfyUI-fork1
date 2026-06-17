@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0afdaa67-340e-49e6-9715-b8934718ae0d}</ProjectGuid>
+    <ProjectGuid>{45af1b40-fa0d-43fb-8908-cb6c27859e34}</ProjectGuid>
     <ProjectHome />
     <StartupFile>main.py</StartupFile>
     <SearchPath />
@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <InterpreterId>Global|VisualStudio|python_embeded</InterpreterId>
+    <InterpreterId>Workspace|Workspace|python_embeded</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -28,6 +28,7 @@
     <Content Include="comfy\sd1_tokenizer\merges.txt" />
     <Content Include="comfy\text_encoders\hydit_clip_tokenizer\vocab.txt" />
     <Content Include="comfy\text_encoders\qwen25_tokenizer\merges.txt" />
+    <Content Include="comfy\text_encoders\qwen35_tokenizer\merges.txt" />
     <Content Include="input\example.png" />
     <Content Include="manager_requirements.txt" />
     <Content Include="pytest.ini" />
@@ -40,6 +41,7 @@
     <Compile Include="alembic_db\versions\0001_assets.py" />
     <Compile Include="alembic_db\versions\0002_merge_to_asset_references.py" />
     <Compile Include="alembic_db\versions\0003_add_metadata_job_id.py" />
+    <Compile Include="alembic_db\versions\0004_drop_tag_type.py" />
     <Compile Include="api_server\routes\internal\internal_routes.py" />
     <Compile Include="api_server\routes\internal\__init__.py" />
     <Compile Include="api_server\routes\__init__.py" />
@@ -63,8 +65,10 @@
     <Compile Include="app\assets\seeder.py" />
     <Compile Include="app\assets\services\asset_management.py" />
     <Compile Include="app\assets\services\bulk_ingest.py" />
+    <Compile Include="app\assets\services\cursor.py" />
     <Compile Include="app\assets\services\file_utils.py" />
     <Compile Include="app\assets\services\hashing.py" />
+    <Compile Include="app\assets\services\image_dimensions.py" />
     <Compile Include="app\assets\services\ingest.py" />
     <Compile Include="app\assets\services\metadata_extract.py" />
     <Compile Include="app\assets\services\path_utils.py" />
@@ -86,6 +90,8 @@
     <Compile Include="comfy\audio_encoders\audio_encoders.py" />
     <Compile Include="comfy\audio_encoders\wav2vec2.py" />
     <Compile Include="comfy\audio_encoders\whisper.py" />
+    <Compile Include="comfy\background_removal\birefnet.py" />
+    <Compile Include="comfy\bg_removal_model.py" />
     <Compile Include="comfy\cldm\cldm.py" />
     <Compile Include="comfy\cldm\control_types.py" />
     <Compile Include="comfy\cldm\dit_embedder.py" />
@@ -99,6 +105,7 @@
     <Compile Include="comfy\conds.py" />
     <Compile Include="comfy\context_windows.py" />
     <Compile Include="comfy\controlnet.py" />
+    <Compile Include="comfy\deploy_environment.py" />
     <Compile Include="comfy\diffusers_convert.py" />
     <Compile Include="comfy\diffusers_load.py" />
     <Compile Include="comfy\extra_samplers\uni_pc.py" />
@@ -106,6 +113,7 @@
     <Compile Include="comfy\gligen.py" />
     <Compile Include="comfy\hooks.py" />
     <Compile Include="comfy\image_encoders\dino2.py" />
+    <Compile Include="comfy\image_encoders\dino3.py" />
     <Compile Include="comfy\k_diffusion\deis.py" />
     <Compile Include="comfy\k_diffusion\sampling.py" />
     <Compile Include="comfy\k_diffusion\sa_solver.py" />
@@ -123,6 +131,7 @@
     <Compile Include="comfy\ldm\audio\autoencoder.py" />
     <Compile Include="comfy\ldm\audio\dit.py" />
     <Compile Include="comfy\ldm\audio\embedders.py" />
+    <Compile Include="comfy\ldm\audio\vae_sa3.py" />
     <Compile Include="comfy\ldm\aura\mmdit.py" />
     <Compile Include="comfy\ldm\cascade\common.py" />
     <Compile Include="comfy\ldm\cascade\controlnet.py" />
@@ -134,6 +143,10 @@
     <Compile Include="comfy\ldm\chroma\model.py" />
     <Compile Include="comfy\ldm\chroma_radiance\layers.py" />
     <Compile Include="comfy\ldm\chroma_radiance\model.py" />
+    <Compile Include="comfy\ldm\cogvideo\model.py" />
+    <Compile Include="comfy\ldm\cogvideo\vae.py" />
+    <Compile Include="comfy\ldm\cogvideo\__init__.py" />
+    <Compile Include="comfy\ldm\colormap.py" />
     <Compile Include="comfy\ldm\common_dit.py" />
     <Compile Include="comfy\ldm\cosmos\blocks.py" />
     <Compile Include="comfy\ldm\cosmos\cosmos_tokenizer\layers3d.py" />
@@ -143,6 +156,14 @@
     <Compile Include="comfy\ldm\cosmos\position_embedding.py" />
     <Compile Include="comfy\ldm\cosmos\predict2.py" />
     <Compile Include="comfy\ldm\cosmos\vae.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\camera.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\dpt.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\model.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\preprocess.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\ray_pose.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\reference_view_selector.py" />
+    <Compile Include="comfy\ldm\depth_anything_3\transform.py" />
+    <Compile Include="comfy\ldm\ernie\model.py" />
     <Compile Include="comfy\ldm\flux\controlnet.py" />
     <Compile Include="comfy\ldm\flux\layers.py" />
     <Compile Include="comfy\ldm\flux\math.py" />
@@ -155,6 +176,10 @@
     <Compile Include="comfy\ldm\genmo\joint_model\utils.py" />
     <Compile Include="comfy\ldm\genmo\vae\model.py" />
     <Compile Include="comfy\ldm\hidream\model.py" />
+    <Compile Include="comfy\ldm\hidream_o1\attention.py" />
+    <Compile Include="comfy\ldm\hidream_o1\conditioning.py" />
+    <Compile Include="comfy\ldm\hidream_o1\model.py" />
+    <Compile Include="comfy\ldm\hidream_o1\utils.py" />
     <Compile Include="comfy\ldm\hunyuan3dv2_1\hunyuandit.py" />
     <Compile Include="comfy\ldm\hunyuan3d\model.py" />
     <Compile Include="comfy\ldm\hunyuan3d\vae.py" />
@@ -167,7 +192,9 @@
     <Compile Include="comfy\ldm\hydit\models.py" />
     <Compile Include="comfy\ldm\hydit\poolers.py" />
     <Compile Include="comfy\ldm\hydit\posemb_layers.py" />
+    <Compile Include="comfy\ldm\ideogram4\model.py" />
     <Compile Include="comfy\ldm\kandinsky5\model.py" />
+    <Compile Include="comfy\ldm\lens\model.py" />
     <Compile Include="comfy\ldm\lightricks\av_model.py" />
     <Compile Include="comfy\ldm\lightricks\embeddings_connector.py" />
     <Compile Include="comfy\ldm\lightricks\latent_upsampler.py" />
@@ -207,15 +234,35 @@
     <Compile Include="comfy\ldm\modules\sdpose.py" />
     <Compile Include="comfy\ldm\modules\sub_quadratic_attention.py" />
     <Compile Include="comfy\ldm\modules\temporal_ae.py" />
+    <Compile Include="comfy\ldm\moge\geometry.py" />
+    <Compile Include="comfy\ldm\moge\model.py" />
+    <Compile Include="comfy\ldm\moge\modules.py" />
+    <Compile Include="comfy\ldm\moge\panorama.py" />
     <Compile Include="comfy\ldm\omnigen\omnigen2.py" />
     <Compile Include="comfy\ldm\pixart\blocks.py" />
     <Compile Include="comfy\ldm\pixart\pixartms.py" />
+    <Compile Include="comfy\ldm\pixeldit\model.py" />
+    <Compile Include="comfy\ldm\pixeldit\modules.py" />
+    <Compile Include="comfy\ldm\pixeldit\pid.py" />
     <Compile Include="comfy\ldm\qwen_image\controlnet.py" />
     <Compile Include="comfy\ldm\qwen_image\model.py" />
+    <Compile Include="comfy\ldm\rt_detr\rtdetr_v4.py" />
+    <Compile Include="comfy\ldm\sam3\detector.py" />
+    <Compile Include="comfy\ldm\sam3\sam.py" />
+    <Compile Include="comfy\ldm\sam3\tracker.py" />
+    <Compile Include="comfy\ldm\supir\supir_modules.py" />
+    <Compile Include="comfy\ldm\supir\supir_patch.py" />
+    <Compile Include="comfy\ldm\supir\__init__.py" />
+    <Compile Include="comfy\ldm\triposplat\gaussian.py" />
+    <Compile Include="comfy\ldm\triposplat\model.py" />
+    <Compile Include="comfy\ldm\triposplat\preview.py" />
+    <Compile Include="comfy\ldm\triposplat\vae.py" />
     <Compile Include="comfy\ldm\util.py" />
+    <Compile Include="comfy\ldm\wan\ar_model.py" />
     <Compile Include="comfy\ldm\wan\model.py" />
     <Compile Include="comfy\ldm\wan\model_animate.py" />
     <Compile Include="comfy\ldm\wan\model_multitalk.py" />
+    <Compile Include="comfy\ldm\wan\model_wandancer.py" />
     <Compile Include="comfy\ldm\wan\vae.py" />
     <Compile Include="comfy\ldm\wan\vae2_2.py" />
     <Compile Include="comfy\lora.py" />
@@ -225,7 +272,9 @@
     <Compile Include="comfy\model_detection.py" />
     <Compile Include="comfy\model_management.py" />
     <Compile Include="comfy\model_patcher.py" />
+    <Compile Include="comfy\model_prefetch.py" />
     <Compile Include="comfy\model_sampling.py" />
+    <Compile Include="comfy\multigpu.py" />
     <Compile Include="comfy\nested_tensor.py" />
     <Compile Include="comfy\ops.py" />
     <Compile Include="comfy\options.py" />
@@ -251,13 +300,19 @@
     <Compile Include="comfy\text_encoders\anima.py" />
     <Compile Include="comfy\text_encoders\aura_t5.py" />
     <Compile Include="comfy\text_encoders\bert.py" />
+    <Compile Include="comfy\text_encoders\cogvideo.py" />
     <Compile Include="comfy\text_encoders\cosmos.py" />
+    <Compile Include="comfy\text_encoders\ernie.py" />
     <Compile Include="comfy\text_encoders\flux.py" />
+    <Compile Include="comfy\text_encoders\gemma4.py" />
     <Compile Include="comfy\text_encoders\genmo.py" />
+    <Compile Include="comfy\text_encoders\gpt_oss.py" />
     <Compile Include="comfy\text_encoders\hidream.py" />
+    <Compile Include="comfy\text_encoders\hidream_o1.py" />
     <Compile Include="comfy\text_encoders\hunyuan_image.py" />
     <Compile Include="comfy\text_encoders\hunyuan_video.py" />
     <Compile Include="comfy\text_encoders\hydit.py" />
+    <Compile Include="comfy\text_encoders\ideogram4.py" />
     <Compile Include="comfy\text_encoders\jina_clip_2.py" />
     <Compile Include="comfy\text_encoders\kandinsky5.py" />
     <Compile Include="comfy\text_encoders\llama.py" />
@@ -269,8 +324,13 @@
     <Compile Include="comfy\text_encoders\omnigen2.py" />
     <Compile Include="comfy\text_encoders\ovis.py" />
     <Compile Include="comfy\text_encoders\pixart_t5.py" />
+    <Compile Include="comfy\text_encoders\pixeldit.py" />
+    <Compile Include="comfy\text_encoders\qwen35.py" />
+    <Compile Include="comfy\text_encoders\qwen3vl.py" />
     <Compile Include="comfy\text_encoders\qwen_image.py" />
     <Compile Include="comfy\text_encoders\qwen_vl.py" />
+    <Compile Include="comfy\text_encoders\sa3.py" />
+    <Compile Include="comfy\text_encoders\sam3_clip.py" />
     <Compile Include="comfy\text_encoders\sa_t5.py" />
     <Compile Include="comfy\text_encoders\sd2_clip.py" />
     <Compile Include="comfy\text_encoders\sd3_clip.py" />
@@ -288,7 +348,6 @@
     <Compile Include="comfy\weight_adapter\lora.py" />
     <Compile Include="comfy\weight_adapter\oft.py" />
     <Compile Include="comfy\weight_adapter\__init__.py" />
-    <Compile Include="comfy\windows.py" />
     <Compile Include="comfy_api\feature_flags.py" />
     <Compile Include="comfy_api\generate_api_stubs.py" />
     <Compile Include="comfy_api\input\basic_types.py" />
@@ -302,6 +361,8 @@
     <Compile Include="comfy_api\internal\__init__.py" />
     <Compile Include="comfy_api\latest\_caching.py" />
     <Compile Include="comfy_api\latest\_input\basic_types.py" />
+    <Compile Include="comfy_api\latest\_input\curve_types.py" />
+    <Compile Include="comfy_api\latest\_input\range_types.py" />
     <Compile Include="comfy_api\latest\_input\video_types.py" />
     <Compile Include="comfy_api\latest\_input\__init__.py" />
     <Compile Include="comfy_api\latest\_input_impl\video_types.py" />
@@ -323,9 +384,12 @@
     <Compile Include="comfy_api\v0_0_1\__init__.py" />
     <Compile Include="comfy_api\v0_0_2\__init__.py" />
     <Compile Include="comfy_api\version_list.py" />
+    <Compile Include="comfy_api_nodes\apis\anthropic.py" />
+    <Compile Include="comfy_api_nodes\apis\beeble.py" />
     <Compile Include="comfy_api_nodes\apis\bfl.py" />
     <Compile Include="comfy_api_nodes\apis\bria.py" />
     <Compile Include="comfy_api_nodes\apis\bytedance.py" />
+    <Compile Include="comfy_api_nodes\apis\bytedance_llm.py" />
     <Compile Include="comfy_api_nodes\apis\elevenlabs.py" />
     <Compile Include="comfy_api_nodes\apis\gemini.py" />
     <Compile Include="comfy_api_nodes\apis\grok.py" />
@@ -333,12 +397,13 @@
     <Compile Include="comfy_api_nodes\apis\hunyuan3d.py" />
     <Compile Include="comfy_api_nodes\apis\ideogram.py" />
     <Compile Include="comfy_api_nodes\apis\kling.py" />
+    <Compile Include="comfy_api_nodes\apis\krea.py" />
     <Compile Include="comfy_api_nodes\apis\luma.py" />
     <Compile Include="comfy_api_nodes\apis\magnific.py" />
     <Compile Include="comfy_api_nodes\apis\meshy.py" />
     <Compile Include="comfy_api_nodes\apis\minimax.py" />
-    <Compile Include="comfy_api_nodes\apis\moonvalley.py" />
     <Compile Include="comfy_api_nodes\apis\openai.py" />
+    <Compile Include="comfy_api_nodes\apis\openrouter.py" />
     <Compile Include="comfy_api_nodes\apis\pixverse.py" />
     <Compile Include="comfy_api_nodes\apis\quiver.py" />
     <Compile Include="comfy_api_nodes\apis\recraft.py" />
@@ -350,11 +415,15 @@
     <Compile Include="comfy_api_nodes\apis\tripo.py" />
     <Compile Include="comfy_api_nodes\apis\veo.py" />
     <Compile Include="comfy_api_nodes\apis\vidu.py" />
+    <Compile Include="comfy_api_nodes\apis\wan.py" />
     <Compile Include="comfy_api_nodes\apis\wavespeed.py" />
     <Compile Include="comfy_api_nodes\apis\__init__.py" />
+    <Compile Include="comfy_api_nodes\nodes_anthropic.py" />
+    <Compile Include="comfy_api_nodes\nodes_beeble.py" />
     <Compile Include="comfy_api_nodes\nodes_bfl.py" />
     <Compile Include="comfy_api_nodes\nodes_bria.py" />
     <Compile Include="comfy_api_nodes\nodes_bytedance.py" />
+    <Compile Include="comfy_api_nodes\nodes_bytedance_llm.py" />
     <Compile Include="comfy_api_nodes\nodes_elevenlabs.py" />
     <Compile Include="comfy_api_nodes\nodes_gemini.py" />
     <Compile Include="comfy_api_nodes\nodes_grok.py" />
@@ -362,19 +431,21 @@
     <Compile Include="comfy_api_nodes\nodes_hunyuan3d.py" />
     <Compile Include="comfy_api_nodes\nodes_ideogram.py" />
     <Compile Include="comfy_api_nodes\nodes_kling.py" />
+    <Compile Include="comfy_api_nodes\nodes_krea.py" />
     <Compile Include="comfy_api_nodes\nodes_ltxv.py" />
     <Compile Include="comfy_api_nodes\nodes_luma.py" />
     <Compile Include="comfy_api_nodes\nodes_magnific.py" />
     <Compile Include="comfy_api_nodes\nodes_meshy.py" />
     <Compile Include="comfy_api_nodes\nodes_minimax.py" />
-    <Compile Include="comfy_api_nodes\nodes_moonvalley.py" />
     <Compile Include="comfy_api_nodes\nodes_openai.py" />
+    <Compile Include="comfy_api_nodes\nodes_openrouter.py" />
     <Compile Include="comfy_api_nodes\nodes_pixverse.py" />
     <Compile Include="comfy_api_nodes\nodes_quiver.py" />
     <Compile Include="comfy_api_nodes\nodes_recraft.py" />
     <Compile Include="comfy_api_nodes\nodes_reve.py" />
     <Compile Include="comfy_api_nodes\nodes_rodin.py" />
     <Compile Include="comfy_api_nodes\nodes_runway.py" />
+    <Compile Include="comfy_api_nodes\nodes_sonilo.py" />
     <Compile Include="comfy_api_nodes\nodes_sora.py" />
     <Compile Include="comfy_api_nodes\nodes_stability.py" />
     <Compile Include="comfy_api_nodes\nodes_topaz.py" />
@@ -395,6 +466,7 @@
     <Compile Include="comfy_api_nodes\__init__.py" />
     <Compile Include="comfy_config\config_parser.py" />
     <Compile Include="comfy_config\types.py" />
+    <Compile Include="comfy_execution\asset_enrichment.py" />
     <Compile Include="comfy_execution\cache_provider.py" />
     <Compile Include="comfy_execution\caching.py" />
     <Compile Include="comfy_execution\graph.py" />
@@ -404,13 +476,20 @@
     <Compile Include="comfy_execution\utils.py" />
     <Compile Include="comfy_execution\validation.py" />
     <Compile Include="comfy_extras\chainner_models\model_loading.py" />
+    <Compile Include="comfy_extras\frame_interpolation_models\film_net.py" />
+    <Compile Include="comfy_extras\frame_interpolation_models\ifnet.py" />
+    <Compile Include="comfy_extras\mediapipe\face_geometry.py" />
+    <Compile Include="comfy_extras\mediapipe\face_landmarker.py" />
     <Compile Include="comfy_extras\nodes_ace.py" />
     <Compile Include="comfy_extras\nodes_advanced_samplers.py" />
     <Compile Include="comfy_extras\nodes_align_your_steps.py" />
     <Compile Include="comfy_extras\nodes_apg.py" />
+    <Compile Include="comfy_extras\nodes_ar_video.py" />
     <Compile Include="comfy_extras\nodes_attention_multiply.py" />
     <Compile Include="comfy_extras\nodes_audio.py" />
     <Compile Include="comfy_extras\nodes_audio_encoder.py" />
+    <Compile Include="comfy_extras\nodes_bernini.py" />
+    <Compile Include="comfy_extras\nodes_bg_removal.py" />
     <Compile Include="comfy_extras\nodes_camera_trajectory.py" />
     <Compile Include="comfy_extras\nodes_canny.py" />
     <Compile Include="comfy_extras\nodes_cfg.py" />
@@ -422,23 +501,29 @@
     <Compile Include="comfy_extras\nodes_context_windows.py" />
     <Compile Include="comfy_extras\nodes_controlnet.py" />
     <Compile Include="comfy_extras\nodes_cosmos.py" />
+    <Compile Include="comfy_extras\nodes_curve.py" />
     <Compile Include="comfy_extras\nodes_custom_sampler.py" />
     <Compile Include="comfy_extras\nodes_dataset.py" />
+    <Compile Include="comfy_extras\nodes_depth_anything_3.py" />
     <Compile Include="comfy_extras\nodes_differential_diffusion.py" />
     <Compile Include="comfy_extras\nodes_easycache.py" />
     <Compile Include="comfy_extras\nodes_edit_model.py" />
     <Compile Include="comfy_extras\nodes_eps.py" />
     <Compile Include="comfy_extras\nodes_flux.py" />
+    <Compile Include="comfy_extras\nodes_frame_interpolation.py" />
     <Compile Include="comfy_extras\nodes_freelunch.py" />
     <Compile Include="comfy_extras\nodes_fresca.py" />
+    <Compile Include="comfy_extras\nodes_gaussian_splat.py" />
     <Compile Include="comfy_extras\nodes_gits.py" />
     <Compile Include="comfy_extras\nodes_glsl.py" />
     <Compile Include="comfy_extras\nodes_hidream.py" />
+    <Compile Include="comfy_extras\nodes_hidream_o1.py" />
     <Compile Include="comfy_extras\nodes_hooks.py" />
     <Compile Include="comfy_extras\nodes_hunyuan.py" />
     <Compile Include="comfy_extras\nodes_hunyuan3d.py" />
     <Compile Include="comfy_extras\nodes_hypernetwork.py" />
     <Compile Include="comfy_extras\nodes_hypertile.py" />
+    <Compile Include="comfy_extras\nodes_ideogram4.py" />
     <Compile Include="comfy_extras\nodes_images.py" />
     <Compile Include="comfy_extras\nodes_image_compare.py" />
     <Compile Include="comfy_extras\nodes_ip2p.py" />
@@ -456,20 +541,25 @@
     <Compile Include="comfy_extras\nodes_mahiro.py" />
     <Compile Include="comfy_extras\nodes_mask.py" />
     <Compile Include="comfy_extras\nodes_math.py" />
+    <Compile Include="comfy_extras\nodes_mediapipe.py" />
     <Compile Include="comfy_extras\nodes_mochi.py" />
     <Compile Include="comfy_extras\nodes_model_advanced.py" />
     <Compile Include="comfy_extras\nodes_model_downscale.py" />
     <Compile Include="comfy_extras\nodes_model_merging.py" />
     <Compile Include="comfy_extras\nodes_model_merging_model_specific.py" />
     <Compile Include="comfy_extras\nodes_model_patch.py" />
+    <Compile Include="comfy_extras\nodes_moge.py" />
     <Compile Include="comfy_extras\nodes_morphology.py" />
+    <Compile Include="comfy_extras\nodes_multigpu.py" />
     <Compile Include="comfy_extras\nodes_nag.py" />
     <Compile Include="comfy_extras\nodes_nop.py" />
+    <Compile Include="comfy_extras\nodes_number_convert.py" />
     <Compile Include="comfy_extras\nodes_optimalsteps.py" />
     <Compile Include="comfy_extras\nodes_pag.py" />
     <Compile Include="comfy_extras\nodes_painter.py" />
     <Compile Include="comfy_extras\nodes_perpneg.py" />
     <Compile Include="comfy_extras\nodes_photomaker.py" />
+    <Compile Include="comfy_extras\nodes_pid.py" />
     <Compile Include="comfy_extras\nodes_pixart.py" />
     <Compile Include="comfy_extras\nodes_post_processing.py" />
     <Compile Include="comfy_extras\nodes_preview_any.py" />
@@ -479,7 +569,11 @@
     <Compile Include="comfy_extras\nodes_replacements.py" />
     <Compile Include="comfy_extras\nodes_resolution.py" />
     <Compile Include="comfy_extras\nodes_rope.py" />
+    <Compile Include="comfy_extras\nodes_rtdetr.py" />
     <Compile Include="comfy_extras\nodes_sag.py" />
+    <Compile Include="comfy_extras\nodes_sam3.py" />
+    <Compile Include="comfy_extras\nodes_save_3d.py" />
+    <Compile Include="comfy_extras\nodes_scail.py" />
     <Compile Include="comfy_extras\nodes_sd3.py" />
     <Compile Include="comfy_extras\nodes_sdpose.py" />
     <Compile Include="comfy_extras\nodes_sdupscale.py" />
@@ -493,13 +587,17 @@
     <Compile Include="comfy_extras\nodes_toolkit.py" />
     <Compile Include="comfy_extras\nodes_torch_compile.py" />
     <Compile Include="comfy_extras\nodes_train.py" />
+    <Compile Include="comfy_extras\nodes_triposplat.py" />
     <Compile Include="comfy_extras\nodes_upscale_model.py" />
     <Compile Include="comfy_extras\nodes_video.py" />
     <Compile Include="comfy_extras\nodes_video_model.py" />
+    <Compile Include="comfy_extras\nodes_void.py" />
     <Compile Include="comfy_extras\nodes_wan.py" />
+    <Compile Include="comfy_extras\nodes_wandancer.py" />
     <Compile Include="comfy_extras\nodes_wanmove.py" />
     <Compile Include="comfy_extras\nodes_webcam.py" />
     <Compile Include="comfy_extras\nodes_zimage.py" />
+    <Compile Include="comfy_extras\void_noise_warp.py" />
     <Compile Include="cuda_malloc.py" />
     <Compile Include="custom_nodes\websocket_image_save.py" />
     <Compile Include="execution.py" />
@@ -509,7 +607,6 @@
     <Compile Include="main.py" />
     <Compile Include="middleware\cache_middleware.py" />
     <Compile Include="middleware\__init__.py" />
-    <Compile Include="new_updater.py" />
     <Compile Include="nodes.py" />
     <Compile Include="node_helpers.py" />
     <Compile Include="protocol.py" />
@@ -520,6 +617,7 @@
     <Compile Include="tests-unit\app_test\custom_node_manager_test.py" />
     <Compile Include="tests-unit\app_test\frontend_manager_test.py" />
     <Compile Include="tests-unit\app_test\model_manager_test.py" />
+    <Compile Include="tests-unit\app_test\node_replace_manager_test.py" />
     <Compile Include="tests-unit\app_test\test_migrations.py" />
     <Compile Include="tests-unit\app_test\user_manager_system_user_test.py" />
     <Compile Include="tests-unit\app_test\__init__.py" />
@@ -528,14 +626,18 @@
     <Compile Include="tests-unit\assets_test\queries\conftest.py" />
     <Compile Include="tests-unit\assets_test\queries\test_asset.py" />
     <Compile Include="tests-unit\assets_test\queries\test_asset_info.py" />
+    <Compile Include="tests-unit\assets_test\queries\test_asset_reference_keyset.py" />
     <Compile Include="tests-unit\assets_test\queries\test_cache_state.py" />
     <Compile Include="tests-unit\assets_test\queries\test_metadata.py" />
     <Compile Include="tests-unit\assets_test\queries\test_tags.py" />
     <Compile Include="tests-unit\assets_test\services\conftest.py" />
     <Compile Include="tests-unit\assets_test\services\test_asset_management.py" />
     <Compile Include="tests-unit\assets_test\services\test_bulk_ingest.py" />
+    <Compile Include="tests-unit\assets_test\services\test_cursor.py" />
     <Compile Include="tests-unit\assets_test\services\test_enrich.py" />
+    <Compile Include="tests-unit\assets_test\services\test_image_dimensions.py" />
     <Compile Include="tests-unit\assets_test\services\test_ingest.py" />
+    <Compile Include="tests-unit\assets_test\services\test_path_utils.py" />
     <Compile Include="tests-unit\assets_test\services\test_tagging.py" />
     <Compile Include="tests-unit\assets_test\services\test_tag_histogram.py" />
     <Compile Include="tests-unit\assets_test\services\__init__.py" />
@@ -543,22 +645,29 @@
     <Compile Include="tests-unit\assets_test\test_crud.py" />
     <Compile Include="tests-unit\assets_test\test_downloads.py" />
     <Compile Include="tests-unit\assets_test\test_file_utils.py" />
+    <Compile Include="tests-unit\assets_test\test_list_cursor.py" />
     <Compile Include="tests-unit\assets_test\test_list_filter.py" />
     <Compile Include="tests-unit\assets_test\test_metadata_filters.py" />
+    <Compile Include="tests-unit\assets_test\test_prompt_id_enforcement.py" />
     <Compile Include="tests-unit\assets_test\test_prune_orphaned_assets.py" />
     <Compile Include="tests-unit\assets_test\test_sync_references.py" />
     <Compile Include="tests-unit\assets_test\test_tags_api.py" />
     <Compile Include="tests-unit\assets_test\test_uploads.py" />
     <Compile Include="tests-unit\comfy_api_test\input_impl_test.py" />
+    <Compile Include="tests-unit\comfy_api_test\multicombo_serialization_test.py" />
+    <Compile Include="tests-unit\comfy_api_test\video_bit_depth_test.py" />
     <Compile Include="tests-unit\comfy_api_test\video_types_test.py" />
     <Compile Include="tests-unit\comfy_extras_test\image_stitch_test.py" />
     <Compile Include="tests-unit\comfy_extras_test\nodes_math_test.py" />
+    <Compile Include="tests-unit\comfy_extras_test\nodes_number_convert_test.py" />
     <Compile Include="tests-unit\comfy_extras_test\__init__.py" />
     <Compile Include="tests-unit\comfy_quant\test_mixed_precision.py" />
     <Compile Include="tests-unit\comfy_test\folder_path_test.py" />
     <Compile Include="tests-unit\comfy_test\model_detection_test.py" />
+    <Compile Include="tests-unit\deploy_environment_test.py" />
     <Compile Include="tests-unit\execution_test\preview_method_override_test.py" />
     <Compile Include="tests-unit\execution_test\test_cache_provider.py" />
+    <Compile Include="tests-unit\execution_test\test_enrich_output.py" />
     <Compile Include="tests-unit\execution_test\validate_node_input_test.py" />
     <Compile Include="tests-unit\feature_flags_test.py" />
     <Compile Include="tests-unit\folder_paths_test\filter_by_content_types_test.py" />
@@ -594,6 +703,7 @@
     <Compile Include="tests\execution\test_public_api.py" />
     <Compile Include="tests\inference\test_inference.py" />
     <Compile Include="tests\inference\__init__.py" />
+    <Compile Include="tests\test_asset_seeder.py" />
     <Compile Include="tests\__init__.py" />
     <Compile Include="utils\extra_config.py" />
     <Compile Include="utils\install_util.py" />
@@ -624,6 +734,7 @@
     <Folder Include="blueprints\.glsl" />
     <Folder Include="comfy" />
     <Folder Include="comfy\audio_encoders" />
+    <Folder Include="comfy\background_removal" />
     <Folder Include="comfy\cldm" />
     <Folder Include="comfy\comfy_types" />
     <Folder Include="comfy\comfy_types\examples" />
@@ -639,18 +750,24 @@
     <Folder Include="comfy\ldm\cascade" />
     <Folder Include="comfy\ldm\chroma" />
     <Folder Include="comfy\ldm\chroma_radiance" />
+    <Folder Include="comfy\ldm\cogvideo" />
     <Folder Include="comfy\ldm\cosmos" />
     <Folder Include="comfy\ldm\cosmos\cosmos_tokenizer" />
+    <Folder Include="comfy\ldm\depth_anything_3" />
+    <Folder Include="comfy\ldm\ernie" />
     <Folder Include="comfy\ldm\flux" />
     <Folder Include="comfy\ldm\genmo\" />
     <Folder Include="comfy\ldm\genmo\joint_model" />
     <Folder Include="comfy\ldm\genmo\vae" />
     <Folder Include="comfy\ldm\hidream" />
+    <Folder Include="comfy\ldm\hidream_o1" />
     <Folder Include="comfy\ldm\hunyuan3d" />
     <Folder Include="comfy\ldm\hunyuan3dv2_1" />
     <Folder Include="comfy\ldm\hunyuan_video" />
     <Folder Include="comfy\ldm\hydit" />
+    <Folder Include="comfy\ldm\ideogram4" />
     <Folder Include="comfy\ldm\kandinsky5" />
+    <Folder Include="comfy\ldm\lens" />
     <Folder Include="comfy\ldm\lightricks" />
     <Folder Include="comfy\ldm\lightricks\vae" />
     <Folder Include="comfy\ldm\lightricks\vocoders" />
@@ -662,9 +779,15 @@
     <Folder Include="comfy\ldm\modules\diffusionmodules" />
     <Folder Include="comfy\ldm\modules\distributions" />
     <Folder Include="comfy\ldm\modules\encoders" />
+    <Folder Include="comfy\ldm\moge" />
     <Folder Include="comfy\ldm\omnigen" />
     <Folder Include="comfy\ldm\pixart" />
+    <Folder Include="comfy\ldm\pixeldit" />
     <Folder Include="comfy\ldm\qwen_image" />
+    <Folder Include="comfy\ldm\rt_detr" />
+    <Folder Include="comfy\ldm\sam3" />
+    <Folder Include="comfy\ldm\supir" />
+    <Folder Include="comfy\ldm\triposplat" />
     <Folder Include="comfy\ldm\wan" />
     <Folder Include="comfy\sd1_tokenizer" />
     <Folder Include="comfy\t2i_adapter" />
@@ -672,6 +795,7 @@
     <Folder Include="comfy\text_encoders" />
     <Folder Include="comfy\text_encoders\hydit_clip_tokenizer" />
     <Folder Include="comfy\text_encoders\qwen25_tokenizer" />
+    <Folder Include="comfy\text_encoders\qwen35_tokenizer" />
     <Folder Include="comfy\weight_adapter" />
     <Folder Include="comfy_api" />
     <Folder Include="comfy_api\input" />
@@ -692,6 +816,8 @@
     <Folder Include="comfy_execution" />
     <Folder Include="comfy_extras" />
     <Folder Include="comfy_extras\chainner_models" />
+    <Folder Include="comfy_extras\frame_interpolation_models" />
+    <Folder Include="comfy_extras\mediapipe" />
     <Folder Include="custom_nodes" />
     <Folder Include="input" />
     <Folder Include="middleware" />
@@ -722,7 +848,7 @@
     <Folder Include="utils" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|python_embeded" />
+    <InterpreterReference Include="Workspace|Workspace|python_embeded" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>
